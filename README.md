@@ -1,5 +1,7 @@
 # seaw
 
+[![Scala CI](https://github.com/akiomik/seaw/actions/workflows/scala-ci.yml/badge.svg)](https://github.com/akiomik/seaw/actions/workflows/scala-ci.yml)
+
 An alternative to wcwidth for scala, to get fixed width of Unicode characters.
 
 ## Usage
