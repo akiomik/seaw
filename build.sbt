@@ -40,6 +40,7 @@ lazy val root = project
       "-deprecation",
       "-feature",
       "-unchecked",
+      "-language:implicitConversions",
       "-Ywarn-unused" // This option is ignored in scala 3 but need for scalafix
     ) ++ (if (scalaVersion.value.startsWith("3.0")) scala3scalacOptions else scala2scalacOptions),
   )
