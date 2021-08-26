@@ -3,6 +3,8 @@ package io.github.akiomik.seaw
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 
+import io.github.akiomik.seaw.implicits._
+
 class CharSequenceOpsSuite extends AnyFunSuite with Matchers {
   test("toString returns underlying String instance") {
     val s = "To Sherlock Holmes she is always the woman."
