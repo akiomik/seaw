@@ -18,8 +18,7 @@ package object implicits {
   implicit class CharSequenceOps[T <: CharSequence](underlying: T) {
     override def toString: String = underlying.toString
 
-    /**
-      * The display width of the CharSequence instance (e.g. String).
+    /** The display width of the CharSequence instance (e.g. String).
       *
       * @todo Add support for ligatures.
       * @return the display width of the CharSequence instance.

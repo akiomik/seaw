@@ -17,36 +17,32 @@ package io.github.akiomik.seaw
 import com.ibm.icu.lang.{UCharacter, UProperty}
 
 case class CodePoint(codePoint: Int) extends AnyVal {
-  /**
-    * The display width of the code point.
+
+  /** The display width of the code point.
     *
     * @return the display width of the code point.
     */
   def width: Int = if (isPrintable) eaToWidth(ea) else 0
 
-  /**
-    * Tests whether the code point is printable character.
+  /** Tests whether the code point is printable character.
     *
     * @return true if the code point is printable character, false otherwise.
     */
   def isPrintable: Boolean = UCharacter.isPrintable(codePoint)
 
-  /**
-    * Tests whether the code point is halfwidth character.
+  /** Tests whether the code point is halfwidth character.
     *
     * @return true if the code point is halfwidth character, false otherwise.
     */
   def isHalfwidth: Boolean = width == 1
 
-  /**
-    * Tests whether the code point is fullwidth character.
+  /** Tests whether the code point is fullwidth character.
     *
     * @return true if the code point is fullwidth character, false otherwise.
     */
   def isFullwidth: Boolean = width == 2
 
-  /**
-    * Tests whether the code point is ambiguous character in East Asian Width.
+  /** Tests whether the code point is ambiguous character in East Asian Width.
     *
     * @return true if the code point is ambiguous character, false otherwise.
     */
