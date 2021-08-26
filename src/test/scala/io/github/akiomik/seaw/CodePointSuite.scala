@@ -29,7 +29,7 @@ class CodePointSuite extends AnyFunSuite with Matchers {
         ("ｱ", 1, true, true, false, false),
         ("1", 1, true, true, false, false),
         (" ", 1, true, true, false, false),
-        ("☆", 1, true, true, false, true),         // ambiguous emoji
+        ("☆", 1, true, true, false, true), // ambiguous emoji
         ("ä", 1, true, true, false, false),
         ("𝒂", 1, true, true, false, false),
         ("ａ", 2, true, false, true, false),
