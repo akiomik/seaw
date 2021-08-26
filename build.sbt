@@ -24,7 +24,11 @@ developers         := List(
   )
 )
 
-lazy val scala2scalacOptions = Seq("-Xlint", "-Ywarn-dead-code", "-Ywarn-numeric-widen", "-Ywarn-value-discard")
+// for scalafix
+semanticdbEnabled := true
+semanticdbVersion := scalafixSemanticdb.revision
+
+lazy val scala2scalacOptions = Seq("-Xlint", "-Ywarn-dead-code", "-Ywarn-numeric-widen", "-Ywarn-value-discard", "-Ywarn-unused")
 lazy val scala3scalacOptions = Seq.empty
 
 lazy val root = project
@@ -40,7 +44,6 @@ lazy val root = project
       "-deprecation",
       "-feature",
       "-unchecked",
-      "-language:implicitConversions",
-      "-Ywarn-unused" // This option is ignored in scala 3 but need for scalafix
+      "-language:implicitConversions"
     ) ++ (if (scalaVersion.value.startsWith("3.0")) scala3scalacOptions else scala2scalacOptions)
   )
