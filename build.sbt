@@ -7,6 +7,7 @@ lazy val v3_0  = "3.0.1"
 crossScalaVersions := Seq(v3_0, v2_13, v2_12)
 scalaVersion       := crossScalaVersions.value.head
 organization       := "io.github.akiomik"
+description        := "An alternative to wcwidth for scala, to get fixed width of Unicode characters"
 homepage           := Some(url("https://github.com/akiomik/seaw"))
 scmInfo            := Some(
   ScmInfo(
@@ -47,3 +48,9 @@ lazy val root = project
       "-language:implicitConversions"
     ) ++ (if (scalaVersion.value.startsWith("3.0")) scala3scalacOptions else scala2scalacOptions)
   )
+
+versionScheme := Some("early-semver")
+
+sonatypeCredentialHost := "s01.oss.sonatype.org"
+publishTo              := sonatypePublishToBundle.value
+publishMavenStyle      := true
