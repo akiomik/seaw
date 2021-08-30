@@ -39,4 +39,16 @@ class CharSequenceOpsSuite extends AnyFunSuite with Matchers {
   test("Combining emoji have width which is sum of printable character widths") {
     assert("👩🏿\u200d🔧".width === 6) // Woman Mechanic (Dark Skin Tone)
   }
+
+  test("padToWidth returns the original string when the given width is less or equal to the string width") {
+    val s = "吾輩は猫である。名前はまだない。"
+    assert(s.padToWidth(31, ' ') eq s)
+    assert(s.padToWidth(32, ' ') eq s)
+  }
+
+  test("padToWidth returns a new string padded with an element value when the given width is greater than the string width") {
+    val s = "吾輩は猫である。名前はまだない。"
+    assert(s.padToWidth(33, ' ') === s + " ")
+    assert(s.padToWidth(34, ' ') === s + "  ")
+  }
 }

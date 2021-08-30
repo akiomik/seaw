@@ -14,6 +14,8 @@
 
 package io.github.akiomik.seaw
 
+import scala.annotation.tailrec
+
 package object implicits {
   implicit class CharSequenceOps[T <: CharSequence](underlying: T) {
     override def toString: String = underlying.toString
@@ -24,5 +26,14 @@ package object implicits {
       * @return the display width of the CharSequence instance.
       */
     def width: Int = underlying.codePoints.reduce(0, (acc, cp) => acc + CodePoint(cp).width)
+
+    /** Returns a string padded with the element to the given width.
+      *
+      *  @return a string with the element appended until the given target width is reached.
+      */
+    def padToWidth(width: Int, elem: Char)(implicit A: Appendable[T]): T = {
+      @tailrec def go(a: T): T = if (CharSequenceOps(a).width >= width) a else go(A.pad(a, elem))
+      go(underlying)
+    }
   }
 }
