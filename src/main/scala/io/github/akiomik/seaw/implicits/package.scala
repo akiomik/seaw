@@ -14,6 +14,8 @@
 
 package io.github.akiomik.seaw
 
+import java.util.PrimitiveIterator
+
 import scala.annotation.tailrec
 
 package object implicits {
@@ -34,6 +36,25 @@ package object implicits {
     def padToWidth(width: Int, elem: Char)(implicit A: Appendable[T]): T = {
       @tailrec def go(a: T): T = if (CharSequenceOps(a).width >= width) a else go(A.pad(a, elem))
       go(underlying)
+    }
+
+    /** Returns a string that has the target width from the first.
+      *
+      * @return a string that has the target width from the first if `n` is less than the string width, the whole string otherwise.
+      */
+    def takeWidth(n: Int): T = {
+      if (CharSequenceOps(underlying).width <= n) {
+        underlying
+      } else {
+        @tailrec
+        def go(iter: PrimitiveIterator.OfInt, width: Int, size: Int): Int = {
+          val cp = CodePoint(iter.next)
+          if (width + cp.width > n) size else go(iter, width + cp.width, size + cp.size)
+        }
+
+        val size = go(underlying.codePoints.iterator, 0, 0)
+        underlying.subSequence(0, size).asInstanceOf[T]
+      }
     }
   }
 }
