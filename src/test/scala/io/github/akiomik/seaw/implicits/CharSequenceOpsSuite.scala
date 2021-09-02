@@ -51,4 +51,18 @@ class CharSequenceOpsSuite extends AnyFunSuite with Matchers {
     assert(s.padToWidth(33, ' ') === s + " ")
     assert(s.padToWidth(34, ' ') === s + "  ")
   }
+
+  test("takeWidth returns the original string when the given width is greater than or equal to the string width") {
+    val s = "吾輩は猫である。名前はまだない。"
+    assert(s.takeWidth(32) eq s)
+    assert(s.takeWidth(33) eq s)
+  }
+
+  test("takeWidth returns a new string when the given width is less than the string width") {
+    val s = "吾輩は猫である。名前はまだない。"
+    assert(s.takeWidth(31) === "吾輩は猫である。名前はまだない")
+    assert(s.takeWidth(30) === "吾輩は猫である。名前はまだない")
+    assert(s.takeWidth(29) === "吾輩は猫である。名前はまだな")
+    assert(s.takeWidth(28) === "吾輩は猫である。名前はまだな")
+  }
 }

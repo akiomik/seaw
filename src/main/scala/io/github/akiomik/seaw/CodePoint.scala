@@ -18,6 +18,12 @@ import com.ibm.icu.lang.{UCharacter, UProperty}
 
 case class CodePoint(codePoint: Int) extends AnyVal {
 
+  /** The character count of the code point.
+    *
+    * @return 2 if the code point is equal to or greater than 0x10000, 1 otherwize.
+    */
+  def size: Int = UCharacter.charCount(codePoint)
+
   /** The display width of the code point.
     *
     * @return the display width of the code point.
