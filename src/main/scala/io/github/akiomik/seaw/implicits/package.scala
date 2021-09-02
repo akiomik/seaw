@@ -20,7 +20,7 @@ package object implicits {
   implicit class CharSequenceOps[T <: CharSequence](underlying: T) {
     override def toString: String = underlying.toString
 
-    /** The display width of the CharSequence instance (e.g. String).
+    /** The display width of the `CharSequence` instance (e.g. `String`).
       *
       * @todo Add support for ligatures.
       * @return the display width of the CharSequence instance.
@@ -29,7 +29,7 @@ package object implicits {
 
     /** Returns a string padded with the element to the given width.
       *
-      *  @return a string with the element appended until the given target width is reached.
+      * @return a string with the element appended until the given target width is reached.
       */
     def padToWidth(width: Int, elem: Char)(implicit A: Appendable[T]): T = {
       @tailrec def go(a: T): T = if (CharSequenceOps(a).width >= width) a else go(A.pad(a, elem))
