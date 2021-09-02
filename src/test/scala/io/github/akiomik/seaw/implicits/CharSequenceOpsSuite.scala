@@ -40,7 +40,7 @@ class CharSequenceOpsSuite extends AnyFunSuite with Matchers {
     assert("👩🏿\u200d🔧".width === 6) // Woman Mechanic (Dark Skin Tone)
   }
 
-  test("padToWidth returns the original string when the given width is less or equal to the string width") {
+  test("padToWidth returns the original string when the given width is less than or equal to the string width") {
     val s = "吾輩は猫である。名前はまだない。"
     assert(s.padToWidth(31, ' ') eq s)
     assert(s.padToWidth(32, ' ') eq s)
